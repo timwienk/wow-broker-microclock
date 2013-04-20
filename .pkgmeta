@@ -1,0 +1,52 @@
+# vim:filetype=yaml:expandtab:tabstop=4:shiftwidth=4:
+
+package-as:
+    Broker_ClockMenu
+
+enable-nolib-creation:
+    no
+
+externals:
+    lib/LibStub:
+        url: svn://svn.wowace.com/wow/libstub/mainline/trunk
+        tag: latest
+
+    lib/CallbackHandler-1.0:
+        url: svn://svn.wowace.com/wow/callbackhandler/mainline/trunk/CallbackHandler-1.0
+        tag: latest
+
+    lib/AceAddon-3.0:
+        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceAddon-3.0
+
+    lib/AceDB-3.0:
+        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceDB-3.0
+
+    lib/AceGUI-3.0:
+        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceGUI-3.0
+
+    lib/AceConsole-3.0:
+        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConsole-3.0
+
+    lib/AceConfig-3.0:
+        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConfig-3.0
+
+    lib/AceLocale-3.0:
+        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceLocale-3.0
+
+    lib/AceTimer-3.0:
+        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceTimer-3.0
+
+    lib/LibPubSub-1.0:
+        url: git://git.wowace.com/wow/libpubsub-1-0/mainline.git
+        tag: latest
+
+    lib/LibQTip-1.0:
+        url: svn://svn.wowace.com/wow/libqtip-1-0/mainline/trunk
+        tag: latest
+
+tools-used:
+    - libdatabroker-1-1
+    - stat-block-core
+
+ignore:
+    - README.md
