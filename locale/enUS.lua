@@ -22,6 +22,9 @@ L['Show realm time'] = true
 L['Show universal time'] = true
 
 L['Tooltip options'] = true
+L['Order'] = true
+L['Memory on top'] = true
+L['Menu on top'] = true
 L['Menu'] = true
 L['Show menu'] = true
 L['Memory'] = true

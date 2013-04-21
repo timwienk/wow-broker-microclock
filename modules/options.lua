@@ -14,6 +14,7 @@ local defaultOptions = {
 		showUniversalTime = false
 	},
 	tooltip = {
+		order = 1,
 		showMenu = true,
 		showMemory = true,
 		addonCount = 15
@@ -50,6 +51,10 @@ function options:InitializeConfig()
 	clockModes[12] = L['12 hours']
 	clockModes[24] = L['24 hours']
 
+	local tooltipOrders = {}
+	tooltipOrders[1] = L['Memory on top']
+	tooltipOrders[2] = L['Menu on top']
+
 	local config = {
 		type = 'group',
 		name = name,
@@ -78,11 +83,13 @@ function options:InitializeConfig()
 				get = options:MakeGetter('tooltip'),
 				set = options:MakeSetter('tooltip'),
 				args = {
-					headerMenu = {order=1, type='header', name=L['Menu']},
-					menu = {order=2, type='toggle', name=L['Show menu'], arg='showMenu'},
-					headerMemory = {order=3, type='header', name=L['Memory']},
-					memory = {order=4, type='toggle', name=L['Show memory'], arg='showMemory'},
-					addons = {order=5, type='range', name=L['Number of addons'], arg='addonCount', min=0, max=50, step=1}
+					headerStyle = {order=1, type='header', name=L['Display style']},
+					order = {order=2, type='select', name=L['Order'], arg='order', values=tooltipOrders, style='radio'},
+					headerMenu = {order=3, type='header', name=L['Menu']},
+					menu = {order=4, type='toggle', name=L['Show menu'], arg='showMenu'},
+					headerMemory = {order=5, type='header', name=L['Memory']},
+					memory = {order=6, type='toggle', name=L['Show memory'], arg='showMemory'},
+					addons = {order=7, type='range', name=L['Number of addons'], arg='addonCount', min=0, max=50, step=1}
 				}
 			},
 

@@ -36,16 +36,25 @@ function tooltip:Show(anchor)
 		self.tip = LibQTip:Acquire(name .. 'Tooltip', 2, 'LEFT', 'LEFT')
 		self.tip:Clear()
 
-		if options.showMemory then
-			self:AddMemory()
+		if options.showMenu and options.order == 2 then
+			self:AddMenu()
 			hasData = true
 
-			if options.showMenu then
+			if options.showMemory then
 				self:AddSeparator()
 			end
 		end
 
-		if options.showMenu then
+		if options.showMemory then
+			self:AddMemory()
+			hasData = true
+
+			if options.showMenu and options.order == 1 then
+				self:AddSeparator()
+			end
+		end
+
+		if options.showMenu and options.order == 1 then
 			self:AddMenu()
 			hasData = true
 		end
