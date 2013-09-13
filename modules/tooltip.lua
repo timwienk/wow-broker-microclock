@@ -133,10 +133,21 @@ end
 
 function tooltip:AddMenu()
 	for _, buttonName in ipairs(MICRO_BUTTONS) do
+		local enabled = true
+
 		if buttonName == 'MainMenuMicroButton' then
 			self:AddLine(self.GetButtonText('FriendsMicroButton'), self.GetButtonTexture('FriendsMicroButton'), self.GetButtonAction('FriendsMicroButton'))
+
+		elseif buttonName == 'StoreMicroButton' then
+			if not C_StorePublic.IsEnabled() then
+				enabled = false
+			end
 		end
-		self:AddLine(self.GetButtonText(buttonName), self.GetButtonTexture(buttonName), self.GetButtonAction(buttonName))
+
+		if enabled then
+			self:AddLine(self.GetButtonText(buttonName), self.GetButtonTexture(buttonName), self.GetButtonAction(buttonName))
+
+		end
 	end
 end
 
@@ -308,6 +319,9 @@ function tooltip.GetButtonAction(name)
 
 	elseif (name == 'FriendsMicroButton') then
 		frame = 'FriendsFrame'
+
+	elseif (name == 'StoreMicroButton') then
+		fn = ToggleStoreUI
 
 	end
 
