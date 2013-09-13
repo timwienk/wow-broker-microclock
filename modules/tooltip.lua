@@ -124,7 +124,7 @@ function tooltip:AddMemory()
 
 		for index = 1, options.addonCount do
 			entry = entries[index]
-			if (entry) then
+			if entry then
 				self:AddLine(format('(%s) %s', self.FormatMemory(entry.memory), entry.name))
 			end
 		end
@@ -206,7 +206,7 @@ function tooltip:GetIconProvider()
 end
 
 function tooltip.FormatMemory(memory)
-	if (memory > 1024) then
+	if memory > 1024 then
 		return format('%.2f MiB', memory / 1024)
 	else
 		return format('%.2f KiB', memory)
@@ -258,23 +258,23 @@ end
 function tooltip.GetButtonAction(name)
 	local action, addon, frame, fn
 
-	if (name == 'CharacterMicroButton') then
+	if name == 'CharacterMicroButton' then
 		frame = 'CharacterFrame'
 
-	elseif (name == 'SpellbookMicroButton') then
+	elseif name == 'SpellbookMicroButton' then
 		frame = 'SpellBookFrame'
 
-	elseif (name == 'TalentMicroButton') then
+	elseif name == 'TalentMicroButton' then
 		addon = 'Blizzard_TalentUI'
 		frame = 'PlayerTalentFrame'
 
-	elseif (name == 'AchievementMicroButton') then
+	elseif name == 'AchievementMicroButton' then
 		fn = ToggleAchievementFrame
 
-	elseif (name == 'QuestLogMicroButton') then
+	elseif name == 'QuestLogMicroButton' then
 		frame = 'QuestLogFrame'
 
-	elseif (name == 'GuildMicroButton') then
+	elseif name == 'GuildMicroButton' then
 		fn = function()
 			local frame
 
@@ -297,30 +297,30 @@ function tooltip.GetButtonAction(name)
 			end
 		end
 
-	elseif (name == 'PVPMicroButton') then
+	elseif name == 'PVPMicroButton' then
 		addon = 'Blizzard_PVPUI'
 		frame = 'PVPUIFrame'
 
-	elseif (name == 'LFDMicroButton') then
+	elseif name == 'LFDMicroButton' then
 		fn = ToggleLFDParentFrame
 
-	elseif (name == 'EJMicroButton') then
+	elseif name == 'EJMicroButton' then
 		addon = 'Blizzard_EncounterJournal'
 		frame = 'EncounterJournal'
 
-	elseif (name == 'CompanionsMicroButton') then
+	elseif name == 'CompanionsMicroButton' then
 		fn = TogglePetJournal
 
-	elseif (name == 'MainMenuMicroButton') then
+	elseif name == 'MainMenuMicroButton' then
 		frame = 'GameMenuFrame'
 
-	elseif (name == 'HelpMicroButton') then
+	elseif name == 'HelpMicroButton' then
 		fn = ToggleHelpFrame
 
-	elseif (name == 'FriendsMicroButton') then
+	elseif name == 'FriendsMicroButton' then
 		frame = 'FriendsFrame'
 
-	elseif (name == 'StoreMicroButton') then
+	elseif name == 'StoreMicroButton' then
 		fn = ToggleStoreUI
 
 	end

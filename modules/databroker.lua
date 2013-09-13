@@ -26,15 +26,15 @@ end
 function broker:OnUpdateTime(localTime, realmTime, universalTime)
 	local timeStrings = {}
 
-	if (options.showLocalTime) then
+	if options.showLocalTime then
 		insert(timeStrings, self.CreateTimeString(localTime))
 	end
 
-	if (options.showRealmTime) then
+	if options.showRealmTime then
 		insert(timeStrings, self.CreateTimeString(realmTime))
 	end
 
-	if (options.showUniversalTime) then
+	if options.showUniversalTime then
 		insert(timeStrings, self.CreateTimeString(universalTime))
 	end
 
