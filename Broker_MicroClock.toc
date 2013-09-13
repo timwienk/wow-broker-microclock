@@ -5,7 +5,7 @@
 ## X-License: MIT License
 ## X-Category: Clock, Calendar, Micro Menu, Data-Broker
 
-## Title: Broker_MicroClock
+## Title: Broker: MicroClock
 ## Notes: Lightweight time display, with micro menu and memory usage tooltip.
 ## Author: Timmeh
 ## OptionalDeps: Blizzard_TimeManager, LibStub, Ace3, LibPubSub-1.0, LibQTip-1.0, GroupCalendar5

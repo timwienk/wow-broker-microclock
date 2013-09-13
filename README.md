@@ -1,4 +1,4 @@
-Broker\_MicroClock
+Broker: MicroClock
 ==================
 
 Simple time display, with micro menu and memory usage tooltip.
