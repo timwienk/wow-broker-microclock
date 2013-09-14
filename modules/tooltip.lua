@@ -8,7 +8,7 @@ local LoadAddOn, GetNumAddOns, GetAddOnInfo = LoadAddOn, GetNumAddOns, GetAddOnI
 local UpdateAddOnMemoryUsage, GetAddOnMemoryUsage = UpdateAddOnMemoryUsage, GetAddOnMemoryUsage
 local SetPortraitTexture, SetSmallGuildTabardTextures = SetPortraitTexture, SetSmallGuildTabardTextures
 local ShowUIPanel, HideUIPanel, GetBindingKey = ShowUIPanel, HideUIPanel, GetBindingKey
-local UnitFactionGroup, IsInGuild = UnitFactionGroup, IsInGuild
+local UnitFactionGroup, IsInGuild, IsStoreEnabled = UnitFactionGroup, IsInGuild, C_StorePublic.IsEnabled
 local MICRO_BUTTONS, SOCIAL_BUTTON, SPELLBOOK_ABILITIES_BUTTON = MICRO_BUTTONS, SOCIAL_BUTTON, SPELLBOOK_ABILITIES_BUTTON
 
 local options = addon:GetModule('Options')
@@ -139,7 +139,7 @@ function tooltip:AddMenu()
 			self:AddLine(self.GetButtonText('FriendsMicroButton'), self.GetButtonTexture('FriendsMicroButton'), self.GetButtonAction('FriendsMicroButton'))
 
 		elseif buttonName == 'StoreMicroButton' then
-			if not C_StorePublic.IsEnabled() then
+			if not IsStoreEnabled() then
 				enabled = false
 			end
 		end
