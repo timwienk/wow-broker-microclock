@@ -3,7 +3,8 @@ Broker: MicroClock
 
 Simple time display, with micro menu and memory usage tooltip.
 
-**Requires a LibDataBroker [Display Addon][].**
+**Requires a LibDataBroker [Display Addon][], like [StatBlockCore][] or
+[ElvUI][].**
 
 Features
 --------
@@ -31,5 +32,7 @@ translate, other than configuration.
 
 [help localise]: http://www.wowace.com/addons/broker_microclock/localization/
 [Display Addon]: https://github.com/tekkub/libdatabroker-1-1/wiki/addons-using-ldb
+[StatBlockCore]: http://www.curse.com/addons/wow/stat-block-core
+[ElvUI]: http://www.tukui.org/dl.php
 [Group Calendar 5]: http://www.curse.com/addons/wow/group-calendar
 [Micro Menu]: http://www.wowpedia.org/Micro_Menu
