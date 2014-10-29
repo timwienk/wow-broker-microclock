@@ -2,14 +2,18 @@ local name, addon = ...
 local tooltip = addon:NewModule('Tooltip')
 
 -- Localise global variables
-local _G, collectgarbage = _G, collectgarbage
-local format, insert, sort, ipairs = string.format, table.insert, table.sort, ipairs
-local LoadAddOn, GetNumAddOns, GetAddOnInfo = LoadAddOn, GetNumAddOns, GetAddOnInfo
-local UpdateAddOnMemoryUsage, GetAddOnMemoryUsage = UpdateAddOnMemoryUsage, GetAddOnMemoryUsage
-local SetPortraitTexture, SetSmallGuildTabardTextures = SetPortraitTexture, SetSmallGuildTabardTextures
-local ShowUIPanel, HideUIPanel, GetBindingKey = ShowUIPanel, HideUIPanel, GetBindingKey
-local UnitFactionGroup, IsInGuild, IsStoreEnabled = UnitFactionGroup, IsInGuild, C_StorePublic.IsEnabled
-local MICRO_BUTTONS, SOCIAL_BUTTON, SPELLBOOK_ABILITIES_BUTTON = MICRO_BUTTONS, SOCIAL_BUTTON, SPELLBOOK_ABILITIES_BUTTON
+local _G = _G
+local collectgarbage, ipairs = _G.collectgarbage, _G.ipairs
+local format, insert, sort = _G.string.format, _G.table.insert, _G.table.sort
+local LoadAddOn, GetNumAddOns, GetAddOnInfo = _G.LoadAddOn, _G.GetNumAddOns, _G.GetAddOnInfo
+local UpdateAddOnMemoryUsage, GetAddOnMemoryUsage = _G.UpdateAddOnMemoryUsage, _G.GetAddOnMemoryUsage
+local SetPortraitTexture, SetSmallGuildTabardTextures = _G.SetPortraitTexture, _G.SetSmallGuildTabardTextures
+local ShowUIPanel, HideUIPanel, GetBindingKey = _G.ShowUIPanel, _G.HideUIPanel, _G.GetBindingKey
+local UnitFactionGroup, IsInGuild, IsStoreEnabled = _G.UnitFactionGroup, _G.IsInGuild, _G.C_StorePublic.IsEnabled
+local MICRO_BUTTONS, SOCIAL_BUTTON, SPELLBOOK_ABILITIES_BUTTON = _G.MICRO_BUTTONS, _G.SOCIAL_BUTTON, _G.SPELLBOOK_ABILITIES_BUTTON
+local ToggleAchievementFrame, ToggleLFDParentFrame = _G.ToggleAchievementFrame, _G.ToggleLFDParentFrame
+local TogglePetJournal, ToggleHelpFrame = _G.TogglePetJournal, _G.ToggleHelpFrame
+local ToggleStoreUI = _G.ToggleStoreUI
 
 local options = addon:GetModule('Options')
 local LibQTip = LibStub('LibQTip-1.0')
@@ -280,15 +284,15 @@ function tooltip.GetButtonAction(name)
 			local frame
 
 			if IsInGuild() then
-				if not GuildFrame then
+				if not _G.GuildFrame then
 					LoadAddOn('Blizzard_GuildUI')
 				end
-				frame = GuildFrame
+				frame = _G.GuildFrame
 			else
-				if not GuildFrame then
+				if not _G.GuildFrame then
 					LoadAddOn('Blizzard_LookingForGuildUI')
 				end
-				frame = LookingForGuildFrame
+				frame = _G.LookingForGuildFrame
 			end
 
 			if frame:IsShown() then

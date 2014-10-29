@@ -2,10 +2,11 @@ local name, addon = ...
 LibStub('AceAddon-3.0'):NewAddon(addon, name, 'AceTimer-3.0', 'LibPubSub-1.0')
 
 -- Localise global variables
-local date, floor, GetGameTime = date, floor, GetGameTime
-local IsAltKeyDown, IsAddOnLoaded = IsAltKeyDown, IsAddOnLoaded
-local ToggleCalendar, Stopwatch_Toggle = ToggleCalendar, Stopwatch_Toggle
-local GroupCalendar = GroupCalendar
+local _G = _G
+local date, floor, GetGameTime = _G.date, _G.floor, _G.GetGameTime
+local IsAltKeyDown, IsAddOnLoaded = _G.IsAltKeyDown, _G.IsAddOnLoaded
+local ToggleCalendar, Stopwatch_Toggle = _G.ToggleCalendar, _G.Stopwatch_Toggle
+local GroupCalendar = _G.GroupCalendar
 
 function addon:OnInitialize()
 	self.L = LibStub('AceLocale-3.0'):GetLocale(name)

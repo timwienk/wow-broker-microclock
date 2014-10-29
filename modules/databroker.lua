@@ -2,7 +2,8 @@ local name, addon = ...
 local broker = addon:NewModule('DataBroker')
 
 -- Localise global variables
-local format, insert, concat = string.format, table.insert, table.concat
+local _G = _G
+local format, insert, concat = _G.string.format, _G.table.insert, _G.table.concat
 
 local options
 

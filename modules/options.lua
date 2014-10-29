@@ -2,7 +2,8 @@ local name, addon = ...
 local options = addon:NewModule('Options')
 
 -- Localise global variables
-local gsub, lower = string.gsub, string.lower
+local _G = _G
+local gsub, lower = _G.string.gsub, _G.string.lower
 
 local defaultOptions = {
 	clock = {
