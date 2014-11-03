@@ -13,7 +13,7 @@ local UnitFactionGroup, IsInGuild, IsStoreEnabled = _G.UnitFactionGroup, _G.IsIn
 local MICRO_BUTTONS, SOCIAL_BUTTON, SPELLBOOK_ABILITIES_BUTTON = _G.MICRO_BUTTONS, _G.SOCIAL_BUTTON, _G.SPELLBOOK_ABILITIES_BUTTON
 local ToggleAchievementFrame, ToggleLFDParentFrame = _G.ToggleAchievementFrame, _G.ToggleLFDParentFrame
 local TogglePetJournal, ToggleHelpFrame = _G.TogglePetJournal, _G.ToggleHelpFrame
-local ToggleStoreUI = _G.ToggleStoreUI
+local ToggleStoreUI, ToggleQuestLog = _G.ToggleStoreUI, _G.ToggleQuestLog
 
 local options = addon:GetModule('Options')
 local LibQTip = LibStub('LibQTip-1.0')
@@ -277,7 +277,7 @@ function tooltip.GetButtonAction(name)
 		fn = ToggleAchievementFrame
 
 	elseif name == 'QuestLogMicroButton' then
-		frame = 'QuestLogFrame'
+		fn = ToggleQuestLog
 
 	elseif name == 'GuildMicroButton' then
 		fn = function()
