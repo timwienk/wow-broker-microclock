@@ -41,7 +41,7 @@ function addon:OnClick(frame, button)
 end
 
 function addon:OnUpdateOptions(group)
-	if group == 'clock' then
+	if group == nil or group == 'clock' then
 		self:UpdateTime()
 	end
 end

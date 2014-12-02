@@ -18,10 +18,18 @@ end
 
 function broker:OnEnable()
 	addon:Subscribe('UPDATE_TIME', self, 'OnUpdateTime')
+	addon:Subscribe('UPDATE_OPTIONS', self, 'OnUpdateOptions')
 end
 
 function broker:OnDisable()
 	addon:Unsubscribe('UPDATE_TIME', self, 'OnUpdateTime')
+	addon:Unsubscribe('UPDATE_OPTIONS', self, 'OnUpdateOptions')
+end
+
+function broker:OnUpdateOptions(group)
+	if group == nil then
+		options = addon:GetModule('Options').db.clock
+	end
 end
 
 function broker:OnUpdateTime(localTime, realmTime, universalTime)

@@ -24,11 +24,19 @@ end
 
 function tooltip:OnEnable()
 	addon:Subscribe('MOUSE_ENTER', self, 'Show')
+	addon:Subscribe('UPDATE_OPTIONS', self, 'OnUpdateOptions')
 end
 
 function tooltip:OnDisable()
 	self:Hide()
 	addon:Unsubscribe('MOUSE_ENTER', self, 'Show')
+	addon:Unsubscribe('UPDATE_OPTIONS', self, 'OnUpdateOptions')
+end
+
+function tooltip:OnUpdateOptions(group)
+	if group == nil then
+		options = addon:GetModule('Options').db.tooltip
+	end
 end
 
 function tooltip:Show(anchor)

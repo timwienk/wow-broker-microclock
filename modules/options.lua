@@ -5,6 +5,7 @@ local options = addon:NewModule('Options')
 local _G = _G
 local gsub, lower = _G.string.gsub, _G.string.lower
 
+local db
 local defaultOptions = {
 	clock = {
 		mode = 24,
@@ -23,9 +24,19 @@ local defaultOptions = {
 }
 
 function options:OnInitialize()
-	self.db = LibStub('AceDB-3.0'):New(name .. 'DB', {profile = defaultOptions}, true).profile
+	db = LibStub('AceDB-3.0'):New(name .. 'DB', {profile = defaultOptions}, true)
+	db.RegisterCallback(self, 'OnProfileChanged', 'OnProfileChanged')
+	db.RegisterCallback(self, 'OnProfileCopied', 'OnProfileChanged')
+	db.RegisterCallback(self, 'OnProfileReset', 'OnProfileChanged')
+
+	self.db = db.profile
 
 	self:InitializeConfig()
+end
+
+function options:OnProfileChanged(event, db)
+	self.db = db.profile
+	addon:Publish('UPDATE_OPTIONS')
 end
 
 function options:MakeGetter(group)
@@ -47,6 +58,9 @@ end
 
 function options:InitializeConfig()
 	local L = addon.L
+	local profileOptions = LibStub('AceDBOptions-3.0'):GetOptionsTable(db)
+	profileOptions.guiHidden = true
+	profileOptions.cmdHidden = true
 
 	local clockModes = {}
 	clockModes[12] = L['12 hours']
@@ -100,12 +114,17 @@ function options:InitializeConfig()
 				guiHidden = true,
 				name = L['Open configuration interface'],
 				func = self.Open
-			}
+			},
+
+			profile = profileOptions
 		}
 	}
 
 	LibStub('AceConfig-3.0'):RegisterOptionsTable(name, config, gsub(lower(name), '^broker_', ''))
-	LibStub('AceConfigDialog-3.0'):AddToBlizOptions(name)
+
+	local ConfigDialog = LibStub('AceConfigDialog-3.0')
+	ConfigDialog:AddToBlizOptions(name)
+	ConfigDialog:AddToBlizOptions(name, profileOptions.name, name, 'profile') 
 end
 
 function options.Open()
