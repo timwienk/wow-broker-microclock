@@ -7,7 +7,7 @@ local L = LibStub('AceLocale-3.0'):NewLocale(name, 'enUS', true)
 L[' AM'] = true
 L[' PM'] = true
 
-L['Addon Memory: '] = true
+L['AddOn Memory: '] = true
 L['..with Blizzard: '] = true
 
 L['Clock options'] = true

@@ -129,7 +129,7 @@ function tooltip:AddMemory()
 
 	sort(entries, tooltip.CompareAddOns)
 
-	self:AddLine(addon.L['Addon Memory: '] .. self.FormatMemory(total))
+	self:AddLine(addon.L['AddOn Memory: '] .. self.FormatMemory(total))
 	self:AddLine(addon.L['..with Blizzard: '] .. self.FormatMemory(collectgarbage('count')))
 
 	if options.addonCount > 0 then
