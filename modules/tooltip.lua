@@ -12,7 +12,7 @@ local ShowUIPanel, HideUIPanel, GetBindingKey = _G.ShowUIPanel, _G.HideUIPanel, 
 local UnitFactionGroup, IsInGuild, IsStoreEnabled = _G.UnitFactionGroup, _G.IsInGuild, _G.C_StorePublic.IsEnabled
 local MICRO_BUTTONS, SOCIAL_BUTTON, SPELLBOOK_ABILITIES_BUTTON = _G.MICRO_BUTTONS, _G.SOCIAL_BUTTON, _G.SPELLBOOK_ABILITIES_BUTTON
 local ToggleAchievementFrame, ToggleLFDParentFrame = _G.ToggleAchievementFrame, _G.ToggleLFDParentFrame
-local TogglePetJournal, ToggleHelpFrame = _G.TogglePetJournal, _G.ToggleHelpFrame
+local ToggleCollectionsJournal, ToggleHelpFrame = _G.ToggleCollectionsJournal, _G.ToggleHelpFrame
 local ToggleStoreUI, ToggleQuestLog = _G.ToggleStoreUI, _G.ToggleQuestLog
 
 local options = addon:GetModule('Options')
@@ -321,8 +321,8 @@ function tooltip.GetButtonAction(name)
 		addon = 'Blizzard_EncounterJournal'
 		frame = 'EncounterJournal'
 
-	elseif name == 'CompanionsMicroButton' then
-		fn = TogglePetJournal
+	elseif name == 'CollectionsMicroButton' then
+		fn = ToggleCollectionsJournal
 
 	elseif name == 'MainMenuMicroButton' then
 		frame = 'GameMenuFrame'
