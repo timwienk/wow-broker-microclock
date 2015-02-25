@@ -3,7 +3,7 @@ local tooltip = addon:NewModule('Tooltip')
 
 -- Localise global variables
 local _G = _G
-local collectgarbage, ipairs = _G.collectgarbage, _G.ipairs
+local collectgarbage, ipairs, floor = _G.collectgarbage, _G.ipairs, _G.floor
 local format, insert, sort = _G.string.format, _G.table.insert, _G.table.sort
 local LoadAddOn, GetNumAddOns, GetAddOnInfo = _G.LoadAddOn, _G.GetNumAddOns, _G.GetAddOnInfo
 local UpdateAddOnMemoryUsage, GetAddOnMemoryUsage = _G.UpdateAddOnMemoryUsage, _G.GetAddOnMemoryUsage
@@ -14,6 +14,11 @@ local MICRO_BUTTONS, SOCIAL_BUTTON, SPELLBOOK_ABILITIES_BUTTON = _G.MICRO_BUTTON
 local ToggleAchievementFrame, ToggleLFDParentFrame = _G.ToggleAchievementFrame, _G.ToggleLFDParentFrame
 local ToggleCollectionsJournal, ToggleHelpFrame = _G.ToggleCollectionsJournal, _G.ToggleHelpFrame
 local ToggleStoreUI, ToggleQuestLog = _G.ToggleStoreUI, _G.ToggleQuestLog
+local GetCVarBool, GetFramerate, GetDownloadedPercentage = _G.GetCVarBool, _G.GetFramerate, _G.GetDownloadedPercentage
+local GetNetStats, GetNetIpTypes, GetAvailableBandwidth = _G.GetNetStats, _G.GetNetIpTypes, _G.GetAvailableBandwidth
+local MAINMENUBAR_LATENCY_LABEL, MAINMENUBAR_FPS_LABEL = _G.MAINMENUBAR_LATENCY_LABEL, _G.MAINMENUBAR_FPS_LABEL
+local MAINMENUBAR_PROTOCOLS_LABEL, MAINMENUBAR_BANDWIDTH_LABEL = _G.MAINMENUBAR_PROTOCOLS_LABEL, _G.MAINMENUBAR_BANDWIDTH_LABEL
+local MAINMENUBAR_DOWNLOAD_PERCENT_LABEL, UNKNOWN = _G.MAINMENUBAR_DOWNLOAD_PERCENT_LABEL, _G.UNKNOWN
 
 local options = addon:GetModule('Options')
 local LibQTip = LibStub('LibQTip-1.0')
@@ -43,37 +48,10 @@ function tooltip:Show(anchor)
 	self:Hide()
 
 	if self.enabledState then
-		local hasData
-
 		self.tip = LibQTip:Acquire(name .. 'Tooltip', 2, 'LEFT', 'LEFT')
-		self.tip:Clear()
-
-		if options.showMenu and options.order == 2 then
-			self:AddMenu()
-			hasData = true
-
-			if options.showMemory then
-				self:AddSeparator()
-			end
-		end
-
-		if options.showMemory then
-			self:AddMemory()
-			hasData = true
-
-			if options.showMenu and options.order == 1 then
-				self:AddSeparator()
-			end
-		end
-
-		if options.showMenu and options.order == 1 then
-			self:AddMenu()
-			hasData = true
-		end
-
 		self.tip.OnRelease = function() self.tip = nil end
 
-		if hasData then
+		if self:Update() then
 			self.tip:SetAutoHideDelay(0.1, anchor)
 			self.tip:SmartAnchorTo(anchor)
 			self.tip:Show()
@@ -81,6 +59,43 @@ function tooltip:Show(anchor)
 			self:Hide()
 		end
 	end
+end
+
+function tooltip:Update()
+	local hasData = false
+
+	if self.enabledState then
+		self.tip:Clear()
+
+		local order
+		if options.order == 1 then
+			order = {'AddStats', 'AddSeparator', 'AddMemory', 'AddSeparator', 'AddMenu'}
+		elseif options.order == 2 then
+			order = {'AddStats', 'AddSeparator', 'AddMenu', 'AddSeparator', 'AddMemory'}
+		elseif options.order == 3 then
+			order = {'AddMenu', 'AddSeparator', 'AddStats', 'AddSeparator', 'AddMemory'}
+		elseif options.order == 4 then
+			order = {'AddMenu', 'AddSeparator', 'AddMemory', 'AddSeparator', 'AddStats'}
+		elseif options.order == 5 then
+			order = {'AddMemory', 'AddSeparator', 'AddStats', 'AddSeparator', 'AddMenu'}
+		elseif options.order == 6 then
+			order = {'AddMemory', 'AddSeparator', 'AddMenu', 'AddSeparator', 'AddStats'}
+		end
+
+		local callNext = true
+		for _, fn in ipairs(order) do
+			if callNext then
+				callNext = self[fn](self)
+				if callNext then
+					hasData = true
+				end
+			else
+				callNext = true
+			end
+		end
+	end
+
+	return hasData
 end
 
 function tooltip:Hide()
@@ -111,7 +126,38 @@ function tooltip:AddSeparator()
 	return self.tip:AddSeparator(10, 0, 0, 0, 0)
 end
 
+function tooltip:AddStats()
+	if not options.showStats then
+		return false
+	end
+
+	local _, _, latencyHome, latencyWorld = GetNetStats();
+	self:AddLine(format(MAINMENUBAR_LATENCY_LABEL, latencyHome, latencyWorld));
+	self:AddSeparator()
+
+	if GetCVarBool('useIPv6') then
+		local ipTypes = {'IPv4', 'IPv6'}
+		local ipTypeHome, ipTypeWorld = GetNetIpTypes();
+		self:AddLine(format(MAINMENUBAR_PROTOCOLS_LABEL, ipTypes[ipTypeHome or 0] or UNKNOWN, ipTypes[ipTypeWorld or 0] or UNKNOWN));
+		self:AddSeparator()
+	end
+
+	self:AddLine(format(MAINMENUBAR_FPS_LABEL, GetFramerate()));
+	self:AddLine(format(MAINMENUBAR_BANDWIDTH_LABEL, GetAvailableBandwidth()));
+
+	local percent = floor(GetDownloadedPercentage() * 100 + 0.5);
+	if percent > 0 then
+		self:AddLine(format(MAINMENUBAR_DOWNLOAD_PERCENT_LABEL, percent));
+	end
+
+	return true
+end
+
 function tooltip:AddMemory()
+	if not options.showMemory then
+		return false
+	end
+
 	local entries, memory, total = {}, 0, 0
 	local entry
 
@@ -142,9 +188,15 @@ function tooltip:AddMemory()
 			end
 		end
 	end
+
+	return true
 end
 
 function tooltip:AddMenu()
+	if not options.showMenu then
+		return false
+	end
+
 	for _, buttonName in ipairs(MICRO_BUTTONS) do
 		local enabled = true
 
@@ -159,9 +211,10 @@ function tooltip:AddMenu()
 
 		if enabled then
 			self:AddLine(self.GetButtonText(buttonName), self.GetButtonTexture(buttonName), self.GetButtonAction(buttonName))
-
 		end
 	end
+
+	return true
 end
 
 function tooltip:GetIconProvider()
