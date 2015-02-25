@@ -178,9 +178,10 @@ function tooltip:GetIconProvider()
 
 	function prototype:SetupCell(tooltip, value)
 		local texture = self.texture
+		local width, height = 14, 15
 
-		texture:SetWidth(14)
-		texture:SetHeight(15)
+		texture:SetWidth(width)
+		texture:SetHeight(height)
 
 		if value == 'player' then
 			SetPortraitTexture(texture, 'player')
@@ -210,7 +211,7 @@ function tooltip:GetIconProvider()
 
 		end
 
-		return texture:GetWidth(), texture:GetHeight()
+		return width, height
 	end
 
 	self.iconProvider = provider
