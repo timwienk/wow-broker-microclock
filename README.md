@@ -14,6 +14,7 @@ Features
 - Optional display of seconds
 - Optional [Micro Menu][] in tooltip
 - Optional, configurable memory usage in tooltip
+- Optional performance statistics (FPS, latency, bandwidth) in tooltip
 - Left click opens the calendar or [Group Calendar 5][] if available
 - Right click opens the stopwatch
 
