@@ -8,43 +8,43 @@ enable-nolib-creation:
 
 externals:
     lib/LibStub:
-        url: svn://svn.wowace.com/wow/libstub/mainline/trunk
+        url: https://repos.wowace.com/wow/libstub/trunk
         tag: latest
 
     lib/CallbackHandler-1.0:
-        url: svn://svn.wowace.com/wow/callbackhandler/mainline/trunk/CallbackHandler-1.0
+        url: https://repos.wowace.com/wow/callbackhandler/trunk
         tag: latest
 
     lib/AceAddon-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceAddon-3.0
+        url: https://repos.wowace.com/wow/ace3/trunk/AceAddon-3.0 
 
     lib/AceDB-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceDB-3.0
+        url: https://repos.wowace.com/wow/ace3/trunk/AceDB-3.0
 
     lib/AceDBOptions-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceDBOptions-3.0
+        url: https://repos.wowace.com/wow/ace3/trunk/AceDBOptions-3.0
 
     lib/AceGUI-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceGUI-3.0
+        url: https://repos.wowace.com/wow/ace3/trunk/AceGUI-3.0
 
     lib/AceConsole-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConsole-3.0
+        url: https://repos.wowace.com/wow/ace3/trunk/AceConsole-3.0
 
     lib/AceConfig-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConfig-3.0
+        url: https://repos.wowace.com/wow/ace3/trunk/AceConfig-3.0
 
     lib/AceLocale-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceLocale-3.0
+        url: https://repos.wowace.com/wow/ace3/trunk/AceLocale-3.0
 
     lib/AceTimer-3.0:
-        url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceTimer-3.0
+        url: https://repos.wowace.com/wow/ace3/trunk/AceTimer-3.0
 
     lib/LibPubSub-1.0:
-        url: git://git.wowace.com/wow/libpubsub-1-0/mainline.git
+        url: https://repos.wowace.com/wow/libpubsub-1-0/trunk
         tag: latest
 
     lib/LibQTip-1.0:
-        url: svn://svn.wowace.com/wow/libqtip-1-0/mainline/trunk
+        url: https://repos.wowace.com/wow/libqtip-1-0/trunk
         tag: latest
 
 tools-used:

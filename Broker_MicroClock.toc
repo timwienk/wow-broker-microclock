@@ -1,4 +1,4 @@
-## Interface: 60100
+## Interface: 70100
 ## Version: @project-version@
 ## X-Date: @project-date-iso@
 ## X-Website: http://www.wowace.com/addons/broker_microclock/

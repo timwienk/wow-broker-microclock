@@ -10,7 +10,7 @@
 	<Include file="lib\AceConfig-3.0\AceConfig-3.0.xml" />
 	<Include file="lib\AceLocale-3.0\AceLocale-3.0.xml" />
 	<Include file="lib\AceTimer-3.0\AceTimer-3.0.xml" />
-	<Include file="lib\LibQTip-1.0\LibQTip-1.0.xml" />
+	<Include file="lib\LibQTip-1.0\lib.xml" />
 	<Include file="lib\LibPubSub-1.0\LibPubSub-1.0.xml" />
 	<!--@end-no-lib-strip@-->
 

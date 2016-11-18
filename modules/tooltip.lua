@@ -200,10 +200,7 @@ function tooltip:AddMenu()
 	for _, buttonName in ipairs(MICRO_BUTTONS) do
 		local enabled = true
 
-		if buttonName == 'MainMenuMicroButton' then
-			self:AddLine(self.GetButtonText('FriendsMicroButton'), self.GetButtonTexture('FriendsMicroButton'), self.GetButtonAction('FriendsMicroButton'))
-
-		elseif buttonName == 'StoreMicroButton' then
+		if buttonName == 'StoreMicroButton' then
 			if not IsStoreEnabled() then
 				enabled = false
 			end
