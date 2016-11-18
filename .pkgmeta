@@ -40,7 +40,7 @@ externals:
         url: https://repos.wowace.com/wow/ace3/trunk/AceTimer-3.0
 
     lib/LibPubSub-1.0:
-        url: https://repos.wowace.com/wow/libpubsub-1-0/trunk
+        url: https://repos.wowace.com/wow/libpubsub-1-0/
         tag: latest
 
     lib/LibQTip-1.0:
