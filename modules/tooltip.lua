@@ -14,6 +14,7 @@ local MICRO_BUTTONS, SOCIAL_BUTTON, SPELLBOOK_ABILITIES_BUTTON = _G.MICRO_BUTTON
 local ToggleAchievementFrame, ToggleLFDParentFrame = _G.ToggleAchievementFrame, _G.ToggleLFDParentFrame
 local ToggleCollectionsJournal, ToggleHelpFrame = _G.ToggleCollectionsJournal, _G.ToggleHelpFrame
 local ToggleStoreUI, ToggleQuestLog = _G.ToggleStoreUI, _G.ToggleQuestLog
+local ToggleFriendsFrame, ToggleWorldMap, ToggleTalentFrame = _G.ToggleFriendsFrame, _G.ToggleWorldMap, _G.ToggleTalentFrame
 local GetCVarBool, GetFramerate, GetDownloadedPercentage = _G.GetCVarBool, _G.GetFramerate, _G.GetDownloadedPercentage
 local GetNetStats, GetNetIpTypes, GetAvailableBandwidth = _G.GetNetStats, _G.GetNetIpTypes, _G.GetAvailableBandwidth
 local MAINMENUBAR_LATENCY_LABEL, MAINMENUBAR_FPS_LABEL = _G.MAINMENUBAR_LATENCY_LABEL, _G.MAINMENUBAR_FPS_LABEL
@@ -329,8 +330,12 @@ function tooltip.GetButtonAction(name)
 		frame = 'SpellBookFrame'
 
 	elseif name == 'TalentMicroButton' then
-		addon = 'Blizzard_TalentUI'
-		frame = 'PlayerTalentFrame'
+		if ToggleTalentFrame == nil then
+			addon = 'Blizzard_TalentUI'
+			frame = 'PlayerTalentFrame'
+		else
+			fn = ToggleTalentFrame
+		end
 
 	elseif name == 'AchievementMicroButton' then
 		fn = ToggleAchievementFrame
@@ -384,8 +389,14 @@ function tooltip.GetButtonAction(name)
 	elseif name == 'FriendsMicroButton' then
 		frame = 'FriendsFrame'
 
+	elseif name == 'SocialsMicroButton' then
+		fn = ToggleFriendsFrame
+
 	elseif name == 'StoreMicroButton' then
 		fn = ToggleStoreUI
+
+	elseif name == 'WorldMapMicroButton' then
+		fn = ToggleWorldMap
 
 	end
 
