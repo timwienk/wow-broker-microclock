@@ -31,9 +31,9 @@ Localisation
 You can [help localise][] this addon. Fortunately there is not a lot to
 translate, other than configuration.
 
-[help localise]: http://www.wowace.com/addons/broker_microclock/localization/
+[help localise]: https://www.wowace.com/projects/broker-microclock/localization
 [Display Addon]: https://github.com/tekkub/libdatabroker-1-1/wiki/addons-using-ldb
-[StatBlockCore]: http://www.curse.com/addons/wow/stat-block-core
-[ElvUI]: http://www.tukui.org/dl.php
-[Group Calendar 5]: http://www.curse.com/addons/wow/group-calendar
-[Micro Menu]: http://www.wowpedia.org/Micro_Menu
+[StatBlockCore]: https://www.curseforge.com/wow/addons/stat-block-core
+[ElvUI]: https://www.tukui.org/classic-addons.php?id=2
+[Group Calendar 5]: https://www.curseforge.com/wow/addons/group-calendar
+[Micro Menu]: http://wow.gamepedia.org/Micro_Menu
