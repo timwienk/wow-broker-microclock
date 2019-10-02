@@ -3,12 +3,13 @@ local tooltip = addon:NewModule('Tooltip')
 
 -- Localise global variables
 local _G = _G
-local collectgarbage, ipairs, floor = _G.collectgarbage, _G.ipairs, _G.floor
+local collectgarbage, ipairs, floor, type = _G.collectgarbage, _G.ipairs, _G.floor, _G.type
 local format, insert, sort = _G.string.format, _G.table.insert, _G.table.sort
 local LoadAddOn, GetNumAddOns, GetAddOnInfo = _G.LoadAddOn, _G.GetNumAddOns, _G.GetAddOnInfo
 local UpdateAddOnMemoryUsage, GetAddOnMemoryUsage = _G.UpdateAddOnMemoryUsage, _G.GetAddOnMemoryUsage
 local SetPortraitTexture, SetSmallGuildTabardTextures = _G.SetPortraitTexture, _G.SetSmallGuildTabardTextures
-local ShowUIPanel, HideUIPanel, GetBindingKey = _G.ShowUIPanel, _G.HideUIPanel, _G.GetBindingKey
+local ShowUIPanel, HideUIPanel = _G.ShowUIPanel, _G.HideUIPanel
+local GetBindingKey, GetAtlasInfo = _G.GetBindingKey, _G.GetAtlasInfo
 local UnitFactionGroup, IsInGuild, IsStoreEnabled = _G.UnitFactionGroup, _G.IsInGuild, _G.C_StorePublic.IsEnabled
 local CHARACTER_BUTTON, COLLECTIONS = _G.CHARACTER_BUTTON, _G.COLLECTIONS
 local MICRO_BUTTONS, SOCIAL_BUTTON, SPELLBOOK_ABILITIES_BUTTON = _G.MICRO_BUTTONS, _G.SOCIAL_BUTTON, _G.SPELLBOOK_ABILITIES_BUTTON
@@ -257,6 +258,12 @@ function tooltip:GetIconProvider()
 			texture:SetTexture(value)
 			texture:SetTexCoord(0.17, 0.77, 0.15, 0.75)
 
+		elseif type(value) == 'table' then
+			texture:SetTexture(value[1])
+			if #value >= 7 then
+				texture:SetTexCoord(value[4] + 0.005, value[5] - 0.005, value[6] + 0.04, value[7] - 0.03)
+			end
+
 		else
 			texture:SetTexture(value)
 			texture:SetTexCoord(0.05, 0.95, 0.5, 0.9)
@@ -319,7 +326,12 @@ function tooltip.GetButtonTexture(name)
 	elseif name == 'PVPMicroButton' then
 		texture = 'pvp'
 	else
-		texture = _G[name]:GetNormalTexture():GetTexture()
+		local atlas = _G[name]:GetNormalTexture():GetAtlas()
+		if atlas then
+			texture = {GetAtlasInfo(atlas)}
+		else
+			texture = _G[name]:GetNormalTexture():GetTexture()
+		end
 	end
 
 	return texture
