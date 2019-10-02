@@ -35,7 +35,7 @@ function addon:OnClick(frame, button)
 		else
 			GroupCalendar.UI.Window:Show()
 		end
-	else
+	elseif ToggleCalendar then
 		ToggleCalendar()
 	end
 end
