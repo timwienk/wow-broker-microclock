@@ -10,6 +10,7 @@ local UpdateAddOnMemoryUsage, GetAddOnMemoryUsage = _G.UpdateAddOnMemoryUsage, _
 local SetPortraitTexture, SetSmallGuildTabardTextures = _G.SetPortraitTexture, _G.SetSmallGuildTabardTextures
 local ShowUIPanel, HideUIPanel, GetBindingKey = _G.ShowUIPanel, _G.HideUIPanel, _G.GetBindingKey
 local UnitFactionGroup, IsInGuild, IsStoreEnabled = _G.UnitFactionGroup, _G.IsInGuild, _G.C_StorePublic.IsEnabled
+local CHARACTER_BUTTON, COLLECTIONS = _G.CHARACTER_BUTTON, _G.COLLECTIONS
 local MICRO_BUTTONS, SOCIAL_BUTTON, SPELLBOOK_ABILITIES_BUTTON = _G.MICRO_BUTTONS, _G.SOCIAL_BUTTON, _G.SPELLBOOK_ABILITIES_BUTTON
 local ToggleAchievementFrame, ToggleLFDParentFrame = _G.ToggleAchievementFrame, _G.ToggleLFDParentFrame
 local ToggleCollectionsJournal, ToggleHelpFrame = _G.ToggleCollectionsJournal, _G.ToggleHelpFrame
@@ -285,7 +286,15 @@ end
 function tooltip.GetButtonText(name)
 	local text, key
 
-	if name == 'SpellbookMicroButton' then
+	if _G[name].tooltipText then
+		text = _G[name].tooltipText
+	elseif name == 'CharacterMicroButton' then
+		text = CHARACTER_BUTTON
+		key = GetBindingKey('TOGGLECHARACTER0')
+	elseif name == 'CollectionsMicroButton' then
+		text = COLLECTIONS
+		key = GetBindingKey('TOGGLECOLLECTIONS')
+	elseif name == 'SpellbookMicroButton' then
 		text = SPELLBOOK_ABILITIES_BUTTON
 		key = GetBindingKey('TOGGLESPELLBOOK')
 	elseif name == 'FriendsMicroButton' then
@@ -293,12 +302,8 @@ function tooltip.GetButtonText(name)
 		key = GetBindingKey('TOGGLESOCIAL')
 	end
 
-	if text then
-		if key then
-			text = text .. '|cffffd200 (' .. key .. ')|r'
-		end
-	else
-		text = _G[name].tooltipText
+	if text and key then
+		text = text .. '|cffffd200 (' .. key .. ')|r'
 	end
 
 	return text
