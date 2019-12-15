@@ -4,7 +4,7 @@ local tooltip = addon:NewModule('Tooltip')
 -- Localise global variables
 local _G = _G
 local collectgarbage, ipairs, floor, type = _G.collectgarbage, _G.ipairs, _G.floor, _G.type
-local format, insert, sort = _G.string.format, _G.table.insert, _G.table.sort
+local format, find, insert, sort = _G.string.format, _G.string.find, _G.table.insert, _G.table.sort
 local LoadAddOn, GetNumAddOns, GetAddOnInfo = _G.LoadAddOn, _G.GetNumAddOns, _G.GetAddOnInfo
 local UpdateAddOnMemoryUsage, GetAddOnMemoryUsage = _G.UpdateAddOnMemoryUsage, _G.GetAddOnMemoryUsage
 local SetPortraitTexture, SetSmallGuildTabardTextures = _G.SetPortraitTexture, _G.SetSmallGuildTabardTextures
@@ -22,6 +22,10 @@ local GetNetStats, GetNetIpTypes, GetAvailableBandwidth = _G.GetNetStats, _G.Get
 local MAINMENUBAR_LATENCY_LABEL, MAINMENUBAR_FPS_LABEL = _G.MAINMENUBAR_LATENCY_LABEL, _G.MAINMENUBAR_FPS_LABEL
 local MAINMENUBAR_PROTOCOLS_LABEL, MAINMENUBAR_BANDWIDTH_LABEL = _G.MAINMENUBAR_PROTOCOLS_LABEL, _G.MAINMENUBAR_BANDWIDTH_LABEL
 local MAINMENUBAR_DOWNLOAD_PERCENT_LABEL, UNKNOWN = _G.MAINMENUBAR_DOWNLOAD_PERCENT_LABEL, _G.UNKNOWN
+
+if not find(MAINMENUBAR_LATENCY_LABEL, '%%') then
+	MAINMENUBAR_LATENCY_LABEL = MAINMENUBAR_LATENCY_LABEL .. '\n%.0f ms (' .. _G.HOME .. ')\n%.0f ms (' .. _G.WORLD .. ')'
+end
 
 local options = addon:GetModule('Options')
 local LibQTip = LibStub('LibQTip-1.0')
