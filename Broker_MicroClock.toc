@@ -1,4 +1,4 @@
-## Interface: 90001
+## Interface: 90100
 ## Version: @project-version@
 ## X-Date: @project-date-iso@
 ## X-Website: https://www.wowace.com/projects/broker-microclock
